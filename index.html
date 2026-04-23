@@ -40,28 +40,350 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(212,175,55,.09
 <body>
 <div id="siteToast" class="toast"></div>
 <header>
-  <h1>RepVault</h1>
-  <nav>
-    <a href="#home" onclick="showPage('home')">Home</a>
-    <a href="#order" onclick="showPage('order')">Order</a>
-    <a href="#creatorProgram" onclick="showPage('creatorProgram')">Creator Program</a>
-    <a href="#contact" onclick="showPage('contact')">Contact</a>
-    <a href="#refunds" onclick="showPage('refunds')">Refunds</a>
-  </nav>
+  <h1>RepVault</h1>
+  <nav>
+    <a href="#home" onclick="showPage('home')">Home</a>
+    <a href="#order" onclick="showPage('order')">Order</a>
+    <a href="#creatorProgram" onclick="showPage('creatorProgram')">Creator Program</a>
+    <a href="#contact" onclick="showPage('contact')">Contact</a>
+    <a href="#refunds" onclick="showPage('refunds')">Refunds</a>
+  </nav>
 </header>
 
 <section id="entryGate" class="page active" style="display:block;">
-  <div class="wrap">
-    <div class="card" style="text-align:center;">
-      <h2 style="margin-top:0;color:#f7e7ab;">Welcome to RepVault</h2>
-      <p class="small">Check your distance from Bethel, Connecticut before entering the site.</p>
-      <div style="border-radius:16px;overflow:hidden;border:1px solid #d4af37;background:#0d0d0d;max-width:760px;margin:0 auto;">
-        <iframe title="Bethel Connecticut Map" src="https://www.openstreetmap.org/export/embed.html?bbox=-73.4700%2C41.3500%2C-73.3500%2C41.4300&layer=mapnik&marker=41.3712%2C-73.4140" style="width:100%;height:260px;border:0;display:block;" loading="lazy"></iframe>
-      </div>
-      <p class="small" style="margin-top:18px;">Within <strong>15 miles</strong> of Bethel, Connecticut: pickup is available. Over 15 miles: shipping is selected automatically.</p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
-        <button onclick="checkDistanceAndEnter()">Use My Location</button>
-        <button class="secondary-btn" onclick="enterWithShipping()">Continue With Shipping</button>
-      </div>
-      <p id="distanceStatus" class="small" style="margin-top:16px;">Location check required before entering the site.</p>
-    </div>
+  <div class="wrap">
+    <div class="card" style="text-align:center;">
+      <h2 style="margin-top:0;color:#f7e7ab;">Welcome to RepVault</h2>
+      <p class="small">Check your distance from Bethel, Connecticut before entering the site.</p>
+      <div style="border-radius:16px;overflow:hidden;border:1px solid #d4af37;background:#0d0d0d;max-width:760px;margin:0 auto;">
+        <iframe title="Bethel Connecticut Map" src="https://www.openstreetmap.org/export/embed.html?bbox=-73.4700%2C41.3500%2C-73.3500%2C41.4300&layer=mapnik&marker=41.3712%2C-73.4140" style="width:100%;height:260px;border:0;display:block;" loading="lazy"></iframe>
+      </div>
+      <p class="small" style="margin-top:18px;">Within <strong>15 miles</strong> of Bethel, Connecticut: pickup is available. Over 15 miles: shipping is selected automatically.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <button onclick="checkDistanceAndEnter()">Use My Location</button>
+        <button class="secondary-btn" onclick="enterWithShipping()">Continue With Shipping</button>
+      </div>
+      <p id="distanceStatus" class="small" style="margin-top:16px;">Location check required before entering the site.</p>
+    </div>
+  </div>
+</section>
+
+<section id="home" class="page">
+  <div class="hero">
+    <div style="display:inline-block;padding:8px 14px;border:1px solid #d4af37;border-radius:999px;color:#f3d97a;font-size:.9rem;margin-bottom:18px;background:rgba(212,175,55,.08);">Premium catalog • Simple checkout • Fast support</div>
+    <h2>Order directly through RepVault</h2>
+    <p>One clean order page. Enter your info, choose pickup or shipping, let us know whether you already have a photo of the item, and send everything by SMS in seconds.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="primary-btn" onclick="showPage('order')">Start Order</button>
+      <button class="secondary-btn" onclick="showPage('creatorProgram')">Creator Program</button>
+      <button class="secondary-btn" onclick="showPage('contact')">Live Support</button>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="text-align:center;"><div style="font-size:2rem;">📦</div><h3>$80</h3><div class="small">Pickup per item • Arrives in 2–3 weeks</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:2rem;">🚚</div><h3>$10</h3><div class="small">Shipping per item • Arrives in 3–4 weeks</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:2rem;">💰</div><h3>100% Refund</h3><div class="small">Refunds available within 7 days after purchase.</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:2rem;">⭐</div><h3>Creator Program</h3><div class="small">Earn 5% of the profit when your code is used.</div></div>
+    <div class="card" style="text-align:center;"><div style="font-size:2rem;">💬</div><h3>Live Support</h3><div class="small">Talk with us directly if you need help before ordering.</div></div>
+  </div>
+</section>
+
+<section id="order" class="page">
+  <div class="wrap">
+    <div class="card">
+      <h2 style="margin-top:0;color:#f7e7ab;">Place Your Order</h2>
+      <p class="small">Fill out the form below. This page replaces the old item pages.</p>
+
+      <div class="form-grid">
+        <input id="customerName" type="text" placeholder="Customer name">
+        <input id="customerAddress" type="text" placeholder="Street address">
+        <input id="customerCity" type="text" placeholder="City">
+        <input id="customerState" type="text" placeholder="State">
+        <input id="customerSize" type="text" placeholder="Size (example: 9, M, 32)">
+        <input id="customerColor" type="text" placeholder="Color choice (optional)">
+      </div>
+
+      <div class="form-grid" style="margin-top:14px;">
+        <select id="deliveryMethod">
+          <option value="pickup">Pick Up ($80 per item)</option>
+          <option value="shipping">Shipping ($80 + $10 per item)</option>
+        </select>
+        <select id="paymentMethod">
+          <option value="">Select payment method</option>
+          <option value="Cash App">Cash App</option>
+          <option value="Zelle">Zelle</option>
+        </select>
+        <input id="creatorCodeCart" type="text" maxlength="5" placeholder="Creator code (optional)" style="text-transform:uppercase;">
+      </div>
+
+      <div class="card" style="margin-top:18px;background:#0d0d0d;">
+        <h3>Method of sending picture</h3>
+        <p class="small">Do you have a photo of your item?</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button type="button" onclick="setPhotoStatus('ready')">Yes, I have a photo</button>
+          <button type="button" class="secondary-btn" onclick="setPhotoStatus('help')">No, I need help</button>
+        </div>
+        <div id="photoReadyBox" class="status-box">
+          Customer has item photo ready. We’ll continue the order by SMS.
+        </div>
+        <div id="photoHelpBox" class="status-box">
+          Get your photo ready and we’ll talk about the item through SMS.
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;">
+        <button onclick="sendOrderSMS()">Send Order via SMS</button>
+        <button class="secondary-btn" onclick="showPage('contact')">Need Help First</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="creatorProgram" class="page">
+  <div class="wrap">
+    <div class="grid">
+      <div class="card">
+        <h3>Step 1</h3>
+        <p class="small">Enter your TikTok follower count and TikTok username to continue.</p>
+        <input id="creatorFollowerCount" type="number" min="0" placeholder="Enter follower count">
+        <input id="tiktokUsername" type="text" placeholder="Enter TikTok username" style="margin-top:10px;">
+        <button type="button" onclick="unlockCreatorStep2()" style="margin-top:12px;">Continue to Step 2</button>
+      </div>
+      <div class="card" id="creatorStep2Card" style="opacity:.45;pointer-events:none;">
+        <h3>Step 2</h3>
+        <p class="small">When someone places an order using your creator code, you receive <strong>5% of the profit</strong> from that order.</p>
+        <button type="button" class="secondary-btn" onclick="unlockCreatorStep3()" style="margin-top:10px;">I Read and Understood</button>
+      </div>
+      <div class="card" id="creatorStep3Card" style="opacity:.45;pointer-events:none;">
+        <h3>Step 3</h3>
+        <p class="small">Create your own 5-character code or generate a random one.</p>
+        <input id="customCreatorCode" type="text" maxlength="5" placeholder="Enter 5-character code" oninput="syncCreatorCode(this.value)" style="text-transform:uppercase;">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+          <button type="button" onclick="generateCreatorCode()">Generate Random Code</button>
+          <button type="button" class="secondary-btn" onclick="useCustomCreatorCode()">Use My Code</button>
+        </div>
+        <p class="small" style="margin-top:12px;">Selected Code: <strong id="selectedCreatorCode">Not selected</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="page">
+  <div class="wrap">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div>
+          <h2 style="margin:0;color:#f7e7ab;">Live Agent Chat</h2>
+          <p class="small" style="margin:6px 0 0;">Status: <strong>Online</strong></p>
+        </div>
+        <button class="secondary-btn" onclick="window.location.href='sms:+12033124955'">Message Live Agent</button>
+      </div>
+      <div id="agentChatMessages" style="margin-top:18px;background:#0d0d0d;border:1px solid #7f6a1e;border-radius:14px;padding:16px;height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;">
+        <div style="align-self:flex-start;max-width:85%;background:#1a1a1a;border:1px solid #d4af37;border-radius:12px;padding:10px 12px;">Hi, welcome to RepVault. Ask about ordering, shipping, pickup, refunds, or creator codes.</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+        <input id="agentChatInput" type="text" placeholder="Type your message here" style="flex:1;min-width:220px;">
+        <button onclick="sendAgentMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="refunds" class="page">
+  <div class="wrap">
+    <div class="card">
+      <h2 style="margin-top:0;color:#f7e7ab;">Refund Policy</h2>
+      <p class="small">All purchases are protected by a <strong>100% refund guarantee</strong>. Refund requests must be made within <strong>7 days after purchase</strong>.</p>
+      <button onclick="showPage('contact')">Request Refund</button>
+    </div>
+  </div>
+</section>
+
+<script>
+let photoStatus = '';
+
+function showToast(message){
+  const toast = document.getElementById('siteToast');
+  if(!toast) return;
+  toast.innerHTML = `<strong>${message}</strong>`;
+  toast.classList.add('show');
+  clearTimeout(showToast.timeout);
+  showToast.timeout = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+function showPage(pageId){
+  document.querySelectorAll('.page').forEach(page => { page.classList.remove('active'); page.style.display=''; });
+  const page = document.getElementById(pageId);
+  if(page){ page.classList.add('active'); page.style.display='block'; }
+  window.location.hash = pageId;
+}
+
+function getDistanceMiles(lat1, lon1, lat2, lon2){
+  const toRad = deg => deg * Math.PI / 180;
+  const R = 3958.8;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+}
+
+function enterWithShipping(){
+  localStorage.setItem('deliveryPreference','shipping');
+  sessionStorage.setItem('entryChecked','true');
+  showPage('home');
+  showToast('Shipping selected manually');
+}
+
+function checkDistanceAndEnter(){
+  const status = document.getElementById('distanceStatus');
+  const bethelLat = 41.3712, bethelLon = -73.4140;
+  if(!navigator.geolocation){
+    if(status) status.textContent = 'Location is not supported on this device. Please continue with shipping manually.';
+    showToast('Location unavailable');
+    return;
+  }
+  if(status) status.textContent = 'Checking your location...';
+  navigator.geolocation.getCurrentPosition(pos => {
+    const miles = getDistanceMiles(pos.coords.latitude, pos.coords.longitude, bethelLat, bethelLon);
+    sessionStorage.setItem('entryChecked','true');
+    if(miles <= 15){
+      localStorage.setItem('deliveryPreference','pickup');
+      if(status) status.textContent = `You are ${miles.toFixed(1)} miles from Bethel. Pickup is available.`;
+      showPage('home');
+      showToast('Pickup is available for your location');
+    } else {
+      localStorage.setItem('deliveryPreference','shipping');
+      if(status) status.textContent = `You are ${miles.toFixed(1)} miles from Bethel. Shipping was selected automatically.`;
+      showPage('home');
+      showToast('Shipping selected automatically');
+    }
+  }, () => {
+    if(status) status.textContent = 'Location was not shared. Please choose shipping manually or allow location access.';
+    showToast('Location permission needed');
+  }, { enableHighAccuracy:true, timeout:10000, maximumAge:300000 });
+}
+
+function setPhotoStatus(status){
+  photoStatus = status;
+  const readyBox = document.getElementById('photoReadyBox');
+  const helpBox = document.getElementById('photoHelpBox');
+  if(readyBox) readyBox.style.display = status === 'ready' ? 'block' : 'none';
+  if(helpBox) helpBox.style.display = status === 'help' ? 'block' : 'none';
+  showToast(status === 'ready' ? 'Photo ready selected' : 'Photo help selected');
+}
+
+function sendOrderSMS(){
+  const name = document.getElementById('customerName').value.trim();
+  const address = document.getElementById('customerAddress').value.trim();
+  const city = document.getElementById('customerCity').value.trim();
+  const state = document.getElementById('customerState').value.trim();
+  const size = document.getElementById('customerSize').value.trim();
+  const color = document.getElementById('customerColor').value.trim();
+  const deliverySelect = document.getElementById('deliveryMethod');
+  const payment = document.getElementById('paymentMethod').value;
+  const creatorCode = document.getElementById('creatorCodeCart').value.trim().toUpperCase();
+
+  if(!name || !address || !city || !state || !size || !payment){
+    alert('Please enter name, street address, city, state, size, and payment method.');
+    return;
+  }
+  if(!photoStatus){
+    alert('Please choose whether you have a photo of your item.');
+    return;
+  }
+
+  const deliveryText = deliverySelect.value === 'shipping' ? 'Shipping ($80 + $10 per item)' : 'Pick Up ($80 per item)';
+  const helpText = photoStatus === 'help'
+    ? 'Customer Message: I need help finding the correct item photo'
+    : 'Photo Status: Customer has item photo ready';
+
+  const message = `RepVault Order | Name: ${name} | Address: ${address}, ${city}, ${state} | Size: ${size}${color ? ` | Color: ${color}` : ''} | ${helpText} | Delivery: ${deliveryText} | Payment Method: ${payment}${creatorCode ? ` | Creator Code: ${creatorCode}` : ''}`;
+  window.location.href = `sms:+12033124955?body=${encodeURIComponent(message)}`;
+}
+
+function unlockCreatorStep2(){
+  const followers = Number(document.getElementById('creatorFollowerCount').value || 0);
+  const username = document.getElementById('tiktokUsername').value.trim();
+  const step2 = document.getElementById('creatorStep2Card');
+  const step3 = document.getElementById('creatorStep3Card');
+  if(followers < 600 || !username){
+    showPage('home');
+    showToast('You do not meet creator requirements');
+    return;
+  }
+  if(step2){ step2.style.opacity='1'; step2.style.pointerEvents='auto'; }
+  if(step3){ step3.style.opacity='.45'; step3.style.pointerEvents='none'; }
+}
+
+function unlockCreatorStep3(){
+  const step3 = document.getElementById('creatorStep3Card');
+  if(step3){ step3.style.opacity='1'; step3.style.pointerEvents='auto'; }
+}
+
+function syncCreatorCode(value){
+  const cleaned = value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,5);
+  document.getElementById('customCreatorCode').value = cleaned;
+}
+
+function generateCreatorCode(){
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let code='';
+  for(let i=0;i<5;i++) code += chars[Math.floor(Math.random()*chars.length)];
+  document.getElementById('customCreatorCode').value = code;
+  document.getElementById('selectedCreatorCode').textContent = code;
+}
+
+function useCustomCreatorCode(){
+  const code = document.getElementById('customCreatorCode').value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,5);
+  const username = document.getElementById('tiktokUsername').value.trim();
+  const followers = document.getElementById('creatorFollowerCount').value.trim();
+  if(code.length !== 5){ alert('Please enter a 5-character code using letters and numbers.'); return; }
+  if(!username){ alert('Please enter your TikTok username.'); return; }
+  document.getElementById('selectedCreatorCode').textContent = code;
+  const message = `Creator Program Registration | TikTok Username: ${username} | Follower Count: ${followers} | Creator Code: ${code}`;
+  window.location.href = `sms:+12033124955?body=${encodeURIComponent(message)}`;
+}
+
+function sendAgentMessage(){
+  const input = document.getElementById('agentChatInput');
+  const messages = document.getElementById('agentChatMessages');
+  if(!input || !messages) return;
+  const text = input.value.trim();
+  if(!text) return;
+  const userBubble = document.createElement('div');
+  userBubble.style.alignSelf='flex-end'; userBubble.style.maxWidth='85%'; userBubble.style.background='#d4af37'; userBubble.style.color='#000'; userBubble.style.borderRadius='12px'; userBubble.style.padding='10px 12px'; userBubble.textContent=text; messages.appendChild(userBubble); input.value='';
+  let reply = 'A live agent can help you more by SMS at 203-312-4955.';
+  const lower = text.toLowerCase();
+  if(lower.includes('shipping')) reply = 'Shipping adds $10 per item. Pickup stays $80 per item.';
+  else if(lower.includes('pickup')) reply = 'Pickup is available if you are within 15 miles of Bethel, Connecticut.';
+  else if(lower.includes('refund')) reply = 'Refunds are 100% and available for 7 days after purchase.';
+  else if(lower.includes('creator')) reply = 'The Creator Program is on its own page and includes follower count, username, and code registration.';
+  setTimeout(() => {
+    const bot = document.createElement('div');
+    bot.style.alignSelf='flex-start'; bot.style.maxWidth='85%'; bot.style.background='#1a1a1a'; bot.style.border='1px solid #d4af37'; bot.style.borderRadius='12px'; bot.style.padding='10px 12px'; bot.textContent=reply; messages.appendChild(bot); messages.scrollTop = messages.scrollHeight;
+  }, 400);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const savedDelivery = localStorage.getItem('deliveryPreference');
+  const delivery = document.getElementById('deliveryMethod');
+  if(delivery && (savedDelivery === 'pickup' || savedDelivery === 'shipping')) delivery.value = savedDelivery;
+  const hash = window.location.hash.replace('#','');
+  const entryChecked = sessionStorage.getItem('entryChecked') === 'true';
+  if(!entryChecked){
+    document.querySelectorAll('.page').forEach(page => { page.classList.remove('active'); page.style.display=''; });
+    const entry = document.getElementById('entryGate');
+    if(entry){ entry.classList.add('active'); entry.style.display='block'; }
+    window.location.hash = 'entryGate';
+  } else if(hash && document.getElementById(hash) && hash !== 'entryGate') {
+    showPage(hash);
+  } else {
+    showPage('home');
+  }
+});
+</script>
+</body>
+</html>
