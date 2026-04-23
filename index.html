@@ -60,9 +60,8 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(212,175,55,.09
       </div>
       <p class="small" style="margin-top:18px;">Within <strong>15 miles</strong> of Bethel, Connecticut: pickup is available. Over 15 miles: shipping is selected automatically.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
-        <button type="button" onclick="checkDistanceAndEnter()">Use My Location</button>
-        <button type="button" class="secondary-btn" onclick="enterWithShipping()">Continue With Shipping</button>
-        <button type="button" class="secondary-btn" onclick="enterSiteOnly()">Enter Site First</button>
+        <button onclick="checkDistanceAndEnter()">Use My Location</button>
+        <button class="secondary-btn" onclick="enterWithShipping()">Continue With Shipping</button>
       </div>
       <p id="distanceStatus" class="small" style="margin-top:16px;">Location check required before entering the site.</p>
     </div>
@@ -237,17 +236,11 @@ function enterWithShipping(){
   showToast('Shipping selected manually');
 }
 
-function enterSiteOnly(){
-  sessionStorage.setItem('entryChecked','true');
-  showPage('home');
-  showToast('Entered site');
-}
-
 function checkDistanceAndEnter(){
   const status = document.getElementById('distanceStatus');
   const bethelLat = 41.3712, bethelLon = -73.4140;
   if(!navigator.geolocation){
-    if(status) status.textContent = 'Location is not supported on this device. You can still enter the site.';
+    if(status) status.textContent = 'Location is not supported on this device. Please continue with shipping manually.';
     showToast('Location unavailable');
     return;
   }
@@ -266,10 +259,9 @@ function checkDistanceAndEnter(){
       showPage('home');
       showToast('Shipping selected automatically');
     }
-  }, err => {
-    if(status) status.textContent = 'Location was not shared. Tap Continue With Shipping or Enter Site First.';
+  }, () => {
+    if(status) status.textContent = 'Location was not shared. Please choose shipping manually or allow location access.';
     showToast('Location permission needed');
-    console.log(err);
   }, { enableHighAccuracy:true, timeout:10000, maximumAge:300000 });
 }
 
